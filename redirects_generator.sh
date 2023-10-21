@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 CONFIGURATION_FILE_PATH=${1:-"./test_default.conf"}
 
