@@ -1,0 +1,11 @@
+spec:
+  name: digital-ocean-redirector
+  services:
+    - name: web
+      git:
+        branch: main
+        repo_clone_url: https://github.com/blafri/do_redirector.git
+      envs:
+        - key: REDIRECTS
+          scope: BUILD_TIME
+          value: "example.xyz>www.example.xyz,test.xyz>www.test.xyz"
