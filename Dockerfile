@@ -1,8 +1,9 @@
-FROM nginx
-COPY default.conf /etc/nginx/conf.d/default.conf
-
-COPY redirects_generator.sh ./
-RUN chmod a+x ./redirects_generator.sh
-
+FROM ruby:3
+WORKDIR /usr/local/src
+COPY redirects.rb ./
 ARG REDIRECTS
-RUN ["/bin/bash", "-c", "./redirects_generator.sh /etc/nginx/conf.d/default.conf"]
+RUN ["ruby", "./redirects.rb"]
+
+FROM nginx:latest
+COPY default.conf /etc/nginx/conf.d/
+COPY --from=0 /usr/local/src/redirects.conf /etc/nginx/conf.d/
