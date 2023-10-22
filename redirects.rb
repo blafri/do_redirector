@@ -16,8 +16,9 @@ conf_file = redirects.map do |raw_redirect_data|
 
   <<~NGINX_SERVER_BLOCK
     server {
-      listen 80;
+      listen 8080;
       server_name #{from};
+      access_log /var/log/nginx/access.log redirect_log;
       return 302 https://#{to}$request_uri;
     }
   NGINX_SERVER_BLOCK

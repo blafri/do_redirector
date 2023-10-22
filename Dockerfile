@@ -6,4 +6,5 @@ RUN ["ruby", "./redirects.rb"]
 
 FROM nginx:latest
 COPY default.conf /etc/nginx/conf.d/
+COPY _logging.conf /etc/nginx/conf.d/
 COPY --from=0 /usr/local/src/redirects.conf /etc/nginx/conf.d/
