@@ -1,11 +1,23 @@
 spec:
+  envs:
+  - key: REDIRECTS
+    scope: BUILD_TIME
+    value: example.xyz>www.example.xyz,test.xyz>www.test.xyz
+  ingress:
+    rules:
+    - component:
+        name: web
+      match:
+        path:
+          prefix: /
   name: digital-ocean-redirector
   services:
-    - name: web
-      git:
-        branch: main
-        repo_clone_url: https://github.com/blafri/do_redirector.git
-      envs:
-        - key: REDIRECTS
-          scope: BUILD_TIME
-          value: "example.xyz>www.example.xyz,test.xyz>www.test.xyz"
+  - dockerfile_path: Dockerfile
+    git:
+      branch: main
+      repo_clone_url: https://github.com/blafri/do_redirector.git
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    name: web
+    source_dir: /
