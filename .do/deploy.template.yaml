@@ -17,7 +17,5 @@ spec:
       branch: main
       repo_clone_url: https://github.com/blafri/do_redirector.git
     http_port: 8080
-    instance_count: 1
-    instance_size_slug: basic-xxs
     name: web
     source_dir: /
